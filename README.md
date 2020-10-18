@@ -6,7 +6,7 @@ we built a Python spellchecker that came with an integrated user-friendly GUI, w
 can input their text, detect misspelled words and choose from a list of five candidate
 correction words to correct them. Users can even add words to a pre-built dictionary.
 
-An example of how this spellchecker works is shown in the screenshot below:
+An example of how this spellchecker works is shown in this [video](https://youtu.be/Xad0fN4jXpI) and the screenshot below:
 
 ![](images/gui_final_appearance.png)
 
