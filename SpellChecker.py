@@ -45,7 +45,7 @@ class SpellcheckerGUI(tk.Tk):
 		# create left bigrams (the usual bigram), right bigrams and trigrams
 		self.bigramsl = list(ngrams(self.unigrams, 2))
 		self.bigramsr = [(w1,w2) for (w1,w2) in zip(self.unigrams[1:],
-													self.unigrams[:-1])]
+							    self.unigrams[:-1])]
 		self.counts_bl = dict(Counter(self.bigramsl))
 		self.counts_br = dict(Counter(self.bigramsr))
 		N_b = len(self.bigramsl)
@@ -89,8 +89,8 @@ class SpellcheckerGUI(tk.Tk):
 
 		# Add popup menu code, binding the right-click to selected text only
 		self.popup_menu = tk.Menu(self, tearoff=0, background='#1c1b1a',
-								  fg='white', activebackground='#534c5c',
-                             	  activeforeground='Yellow')
+					  fg='white', activebackground='#534c5c',
+                             	          activeforeground='Yellow')
 		self.txt1.tag_bind("sel", '<Button-3>', self.popup)
 
 
@@ -399,9 +399,9 @@ class SpellcheckerGUI(tk.Tk):
 				else:
 					cost = 1
 				d[(i,j)] = min(
-							   d[(i-1,j)] + 1, # deletion
-							   d[(i,j-1)] + 1, # insertion
-							   d[(i-1,j-1)] + cost, # substitution
+						d[(i-1,j)] + 1, # deletion
+						d[(i,j-1)] + 1, # insertion
+						d[(i-1,j-1)] + cost, # substitution
 							  )
 				if i and j and s1[i]==s2[j-1] and s1[i-1] == s2[j]:
 					d[(i,j)] = min (d[(i,j)], d[i-2,j-2] + cost) # transposition
