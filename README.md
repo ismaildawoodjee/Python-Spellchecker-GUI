@@ -10,8 +10,6 @@ An example of how this spellchecker works is shown in the screenshot below:
 
 ![](images/gui_final_appearance.png)
 
-{% include youtubePlayer.html id="Xad0fN4jXpI" %}
-
 ## The Team
 
 ## Data Collection
