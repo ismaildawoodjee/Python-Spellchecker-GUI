@@ -1,4 +1,4 @@
-# Spell-It-Right
+# Python Spellchecker GUI
 
 Most Python spellcheckers require you to input your text on the command line interface
 and run it to return misspelled words or suggest corrections to them. However,
@@ -10,16 +10,23 @@ An example of how this spellchecker works is shown in this [video](https://youtu
 
 ![](images/gui_final_appearance.png)
 
+**How it works:** Cut-and-paste or type your text into the provided textbox. Then click SUBMIT.
+This will check for non-word errors (misspelled words that are not in the dictionary). These
+errors are highlighted in red. Select the error word only, excluding the punctuation near them,
+and right-click on it. Choose one correction from among 5, or add to dictionary. Then click SUBMIT
+a second time, which will check for real-word errors (words that are used in bad context). These
+will also be highlighted in red, and can be corrected by right-clicking on them and choosing a correction word.
+
 ## The Tasks
-The team consists of four members, including myself. I was responsible for
+The team consisted of four members, including myself. I was responsible for
 
 - Data collection
 - Data extraction
 - Important contributions to data cleaning and preprocessing
 - Implementing backend spellchecking code and suggesting correction words
-- Meshing backend code with GUI frontend written by teammate
+- Integrating backend code with GUI frontend written by teammate
 - Adding text highlighting and right-click functionality, 
-  as well as dictionary scroll-box and user instructions
+  as well as dictionary scroll-box, dictionary `SEARCH` and user instructions
 
 ## Data Collection
 The first challenge was to find an appropriate corpus. According to the instructor, the corpus must
@@ -44,6 +51,12 @@ Also, economics is a (social) science.
 The next challenge was to figure out how to extract text data from a PDF file.
 
 PDFs are extremely messy objects. In addition to the main body of words, there are headers, footers, page numbers, chapter names and numbers, textboxes on the sides, images and diagrams, figure descriptions, and so on. 
+
+Fortunately, Python has a library called [`pdfminersix`](https://pdfminersix.readthedocs.io/en/latest/tutorial/extract_pages.html), with high-level API functions that allow the user to selectively extract only the text from even the messiest of PDF files. The way `pdfminersix` achieves this is by first dividing the PDF into individual pages. For each page, there are "elements" which can be paragraphs, lines of words/letters, or figures. If the element is a `TextContainer`, i.e. it only contains words, then the text from this element is extracted.
+
+![](images/data_extraction.png)
+
+The problem with this extraction method is that it also captures individual characters, chapter names, page numbers, headers, footers, and textboxes that detract from the main body of the text. To deal with this problem, I added a conditional clause to the code to only extract text if the `TextContainer` contains more than 200 characters. Otherwise, "C H A P T E R 1" would be extracted, which is undesirable.
 
 ## Data Preprocessing
 
